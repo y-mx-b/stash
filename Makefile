@@ -23,6 +23,7 @@ RCFLAGS = -O2 -DNDEBUG
 
 .PHONY: help debug debug_run release release_run clean install
 
+
 # --- DEBUG BUILD ---
 
 debug: $(DDIR) $(DEXEC)
@@ -62,8 +63,16 @@ release_run: release
 clean:
 	rm -rf $(RDIR) $(DDIR)
 
-install:
-	echo "TODO"
+# TODO: make install directories variables
+install: release
+	mkdir -p ~/.local/share/man
+	cp ./doc/dotcfg.man ~/.local/share/man/dotcfg.1
+	mkdir -p ~/.local/bin
+	cp ./.build/release/dotcfg ~/.local/bin/dotcfg
+
+uninstall:
+	-rm ~/.local/share/man/dotcfg.1
+	-rm ~/.local/bin/dotcfg
 
 help:
 	@echo '# Build'

@@ -1,0 +1,23 @@
+.TH DOTCFG 1
+
+.SH NAME
+dotcfg \- simple dotfile configuration utility
+.SH SYNOPSIS
+\fBdotcfg\fP [COMMAND] [OPTIONS]
+.SH DESCRIPTION
+\fBdotcfg\fP stores all your dotfiles in a single place and copies the file
+tree within it to place your dotfiles in the right place.
+.SH OPTIONS
+.TP
+\fB\-h\fP, \fB\-\-help\fP
+Show a brief help menu.
+.TP
+.BR \-\-version
+Display version number.
+.SH COMMANDS
+.TP
+\fBadd\fP
+Add a file.
+.TP
+\fBsync\fP
+Sync dotfiles.
