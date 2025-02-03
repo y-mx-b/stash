@@ -1,0 +1,79 @@
+# --- COMPILER FLAGS ---
+CC = clang
+CFLAGS = -Wall -Werror -Wextra
+
+# --- PROJECT FILES ---
+SRC = $(wildcard src/*.c)
+EXEC = dotcfg
+
+# --- DEBUG BUILD ---
+DDIR = .build/debug
+DEXEC = $(DDIR)/$(EXEC)
+DOBJS = $(patsubst src/%.c,$(DDIR)/%.o,$(SRC))
+DCFLAGS = -g -O0 -DDEBUG
+
+# --- RELEASE BUILD ---
+RDIR = .build/release
+REXEC = $(RDIR)/$(EXEC)
+ROBJS = $(patsubst src/%.c,$(RDIR)/%.o,$(SRC))
+RCFLAGS = -O2 -DNDEBUG
+
+
+# --- COMMANDS ---
+
+.PHONY: help debug debug_run release release_run clean install
+
+# --- DEBUG BUILD ---
+
+debug: $(DDIR) $(DEXEC)
+
+$(DDIR):
+	@mkdir -p $(DDIR)
+
+$(DEXEC): $(DOBJS)
+	$(CC) $(CFLAGS) $(DFLAGS) -o $@ $^
+
+$(DDIR)/%.o: $(SRC)
+	$(CC) -c $(CFLAGS) $(DCFLAGS) -o $@ -c $<
+
+debug_run: debug
+	./$(DEXEC) $(ARGS)
+
+
+# --- RELEASE BUILD ---
+
+release: $(RDIR) $(REXEC)
+
+$(RDIR):
+	@mkdir -p $(RDIR)
+
+$(REXEC): $(ROBJS)
+	$(CC) $(CFLAGS) $(RCFLAGS) -o $@ $^
+
+$(RDIR)/%.o: $(SRC)
+	$(CC) $(CFLAGS) $(RCFLAGS) -o $@ -c $<
+
+release_run: release
+	./$(REXEC)
+
+
+# --- MISC ---
+
+clean:
+	rm -rf $(RDIR) $(DDIR)
+
+install:
+	echo "TODO"
+
+help:
+	@echo '# Build'
+	@echo '`make debug`                     -- debug build'
+	@echo '`make release`                   -- release build'
+	@echo
+	@echo '# Run'
+	@echo '`make debug_run ARGS="{ARGS}"`   -- run debug binary with arguments'
+	@echo '`make release_run ARGS="{ARGS}"` -- run release binary with arguments'
+	@echo
+	@echo '# Misc'
+	@echo '`make clean`                     -- clean all build artifacts'
+	@echo '`make install`                   -- install `dotcfg`'
