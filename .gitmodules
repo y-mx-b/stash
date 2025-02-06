@@ -1,4 +1,0 @@
-[submodule "lib/libgit2"]
-	path = lib/libgit2
-    url = https://github.com/libgit2/libgit2.git
-    branch = maint/v1.9

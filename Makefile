@@ -1,6 +1,6 @@
 # --- COMPILER FLAGS ---
 CC = clang
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Wextra
 
 # --- PROJECT FILES ---
 SRC = $(wildcard src/*.c)
@@ -17,7 +17,6 @@ RDIR = .build/release
 REXEC = $(RDIR)/$(EXEC)
 ROBJS = $(patsubst src/%.c,$(RDIR)/%.o,$(SRC))
 RCFLAGS = -O2 -DNDEBUG
-
 
 # --- COMMANDS ---
 
@@ -61,7 +60,7 @@ release_run: release
 # --- MISC ---
 
 clean:
-	rm -rf $(RDIR) $(DDIR)
+	rm -rf .build
 
 # TODO: make install directories variables
 install: release
