@@ -2,7 +2,9 @@
 
 Configure your dotfiles, all from one place!
 
-> [!NOTE] `dotcfg` currently only supports UNIX compatible operating systems.
+> [!NOTE]
+>
+> `dotcfg` currently only supports UNIX compatible operating systems.
 
 ## Features
 
@@ -19,8 +21,10 @@ Configure your dotfiles, all from one place!
 
 ## Installation
 
-> [!NOTE] It is recommended to have `~/.local/share/man` in your `MANPATH` and `~/.local/bin` in
-> your `PATH`.
+> [!NOTE]
+>
+> It is recommended to have `~/.local/share/man` in your `MANPATH` and `~/.local/bin` in your
+> `PATH`.
 
 ## Usage
 

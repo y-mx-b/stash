@@ -63,7 +63,7 @@ clean:
 	rm -rf .build
 
 fmt:
-	mdformat --wrap 100 *.md
+	mdformat --number --wrap 100 *.md
 	clang-format -i src/*
 
 # TODO: make install directories variables
