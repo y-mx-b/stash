@@ -33,7 +33,7 @@ $(DDIR):
 $(DEXEC): $(DOBJS)
 	$(CC) $(CFLAGS) $(DFLAGS) -o $@ $^
 
-$(DDIR)/%.o: $(SRC)
+$(DDIR)/%.o: src/%.c
 	$(CC) -c $(CFLAGS) $(DCFLAGS) -o $@ -c $<
 
 debug_run: debug
@@ -50,11 +50,11 @@ $(RDIR):
 $(REXEC): $(ROBJS)
 	$(CC) $(CFLAGS) $(RCFLAGS) -o $@ $^
 
-$(RDIR)/%.o: $(SRC)
+$(RDIR)/%.o: src/%.c
 	$(CC) $(CFLAGS) $(RCFLAGS) -o $@ -c $<
 
 release_run: release
-	./$(REXEC)
+	./$(REXEC) $(ARGS)
 
 
 # --- MISC ---
