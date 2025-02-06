@@ -20,7 +20,7 @@ RCFLAGS = -O2 -DNDEBUG
 
 # --- COMMANDS ---
 
-.PHONY: help debug debug_run release release_run clean install
+.PHONY: help debug debug_run release release_run clean install fmt
 
 
 # --- DEBUG BUILD ---
@@ -61,6 +61,10 @@ release_run: release
 
 clean:
 	rm -rf .build
+
+fmt:
+	mdformat --wrap 100 *.md
+	clang-format -i src/*
 
 # TODO: make install directories variables
 install: release

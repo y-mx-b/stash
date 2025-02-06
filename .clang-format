@@ -1,1 +1,75 @@
 # TODO: add format style
+Language: Cpp
+IndentWidth: 4
+TabWidth: 8
+UseTab: Never
+ColumnLimit: 100
+ContinuationIndentWidth: 4
+
+AlignAfterOpenBracket: BlockIndent
+AlignArrayOfStructures: Left
+AlignConsecutiveAssignments:
+  Enabled: true
+  AcrossComments: true
+  AlignCompound: true
+  # AlignFunctionDeclarations: true
+  AlignFunctionPointers: false
+  PadOperators: false
+AlignConsecutiveBitFields: AcrossComments
+AlignConsecutiveDeclarations: AcrossComments
+AlignConsecutiveMacros: AcrossComments
+AlignEscapedNewlines: LeftWithLastLine
+AlignOperands: Align
+AlignTrailingComments:
+  Kind: Always
+  OverEmptyLines: 1
+
+AllowShortBlocksOnASingleLine: Always
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: OnlyFirstIf
+AllowShortLoopsOnASingleLine: false
+AlwaysBreakBeforeMultilineStrings: true
+
+BinPackArguments: false
+BinPackParameters: false # OnePerLine
+BitFieldColonSpacing: Both
+
+BreakAdjacentStringLiterals: true
+BreakAfterReturnType: ExceptShortType
+BreakBeforeBinaryOperators: All
+BreakBeforeBraces: Attach
+BreakBeforeTernaryOperators: true
+# BreakBinaryOperations: OnePerLine
+
+IncludeBlocks: Merge
+IndentCaseLabels: true
+IndentGotoLabels: false
+IndentPPDirectives: None
+IndentWrappedFunctionNames: true
+InsertBraces: true
+InsertNewlineAtEOF: true
+InsertTrailingCommas: Wrapped
+LineEnding: LF
+
+PointerAlignment: Right
+QualifierAlignment: Leave
+# QualifierOrder: [inline, static, type]
+ReflowComments: false # IndentOnly
+RemoveParentheses: Leave
+RemoveSemicolon: false
+SortIncludes: CaseSensitive
+SpaceAfterCStyleCast: true
+SpaceAfterLogicalNot: false
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeCaseColon: false
+SpaceBeforeParens: ControlStatements
+SpaceBeforeSquareBrackets: false
+SpaceInEmptyBlock: false
+SpacesBeforeTrailingComments: 1
+SpacesInLineCommentPrefix:
+  Minimum: 1
+  Maximum: -1
+SpacesInParens: Never
+SpacesInSquareBrackets: false
