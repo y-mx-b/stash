@@ -1,7 +1,7 @@
 #ifndef __DOTCFG_CMD_H__
 #define __DOTCFG_CMD_H__
 
-enum CMD {
+enum cmd {
     CMD_INIT,
     CMD_CLEAR,
     CMD_HELP,

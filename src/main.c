@@ -1,10 +1,15 @@
-#include <stdio.h>
 #include "cli.h"
+#include <stdio.h>
 
 int main(int argc, char **argv) {
     if (argc < 2) {
         printf("%s", cli_help());
         return 0;
+    }
+
+    struct args args = cli_lex_args(argc, argv);
+    for (size_t i = 0; i < args.count; i++) {
+        printf("%d: %s\n", args.args[i].type, args.args[i].value);
     }
 
     switch (cli_parse_cmd(argv[1])) {
@@ -13,7 +18,7 @@ int main(int argc, char **argv) {
             break;
 
         case CMD_CLEAR:
-			cmd_clear();
+            cmd_clear();
             break;
 
         case CMD_UNKNOWN:

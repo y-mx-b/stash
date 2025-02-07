@@ -1,8 +1,8 @@
 #include "cmd.h"
-#include <stdio.h>
 #include "dir.h"
-#include <unistd.h>
+#include <stdio.h>
 #include <sys/stat.h>
+#include <unistd.h>
 
 void cmd_init() {
     printf("%s\n", dir_cfg());
@@ -10,6 +10,6 @@ void cmd_init() {
 }
 
 void cmd_clear() {
-	printf("clear: %s\n", dir_cfg());
+    printf("clear: %s\n", dir_cfg());
     rmdir(dir_cfg());
 }
