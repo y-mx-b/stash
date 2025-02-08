@@ -3,5 +3,6 @@
 
 const char *dir_home();
 char       *dir_cfg();
+char dir_cfg_len();
 
 #endif

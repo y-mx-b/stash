@@ -23,3 +23,13 @@ char *dir_cfg() {
     }
     return _CFG_DIR;
 }
+
+int _CFG_DIR_LEN = 0;
+
+char dir_cfg_len() {
+	if (_CFG_DIR_LEN == 0) {
+		_CFG_DIR_LEN = strlen(dir_cfg());
+	}
+
+	return _CFG_DIR_LEN;
+}
