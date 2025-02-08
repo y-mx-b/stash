@@ -17,16 +17,35 @@ int link_entry(const char *path, const struct stat *stat, const int typeflag, st
 	sprintf(new_path, "%s/%s", dir_home(), path + dir_cfg_len() + 1);
 	switch (typeflag) {
 		case FTW_F:
-			log("create symlink: \"%s\" -> \"%s\"\n", new_path, path);
+link:
+			log("link \"%s\" -> \"%s\": ", new_path, path);
 			if (symlink(path, new_path) != 0) {
 				// TODO: handle errors
 				// TODO: check if files already exist, require force flag to overwrite
+				switch (errno) {
+					case EEXIST:
+						log("file already exists\n");
+						if (cli_force) {
+							log("unlinking \"%s\"\n", new_path);
+							unlink(new_path);
+							goto link;
+						}
+						break;
+				}
+			} else {
+				log("success\n");
 			}
 			break;
 		case FTW_D:
-			log("create directory: \"%s\"\n", new_path);
+			log("create directory \"%s\": ", new_path);
 			if (mkdir(new_path, 0755) != 0) {
 				// TODO: handle errors
+				switch (errno) {
+					case EEXIST:
+						log("directory already exists\n");
+				}
+			} else {
+				log("success\n");
 			}
 			break;
 		case FTW_NS:
@@ -90,13 +109,13 @@ int main(int argc, char **argv) {
 
     // priority: version -> help -> init -> cd -> exec
 
-    // display version number
+    // display version number and exit
     if (cli.version) {
         printf("%s", cli_version());
         return 0;
     }
 
-    // display help message
+    // display help message and exit
     if (cli.help) {
         printf("%s", cli_help());
         return 0;
