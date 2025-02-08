@@ -10,6 +10,8 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
+static bool cli_force = false;
+
 int link_entry(const char *path, const struct stat *stat, const int typeflag, struct FTW *pathinfo) {
 	static char new_path[PATH_MAX];
 	sprintf(new_path, "%s/%s", dir_home(), path + dir_cfg_len() + 1);
@@ -43,7 +45,6 @@ int main(int argc, char **argv) {
     struct cli cli = {
         .version = false,
         .help    = false,
-        .force   = false,
         .init    = false,
         .sync    = false,
         .dir     = dir_cfg(),
@@ -63,7 +64,7 @@ int main(int argc, char **argv) {
 				enable_log();
                 break;
             case 'f':
-                cli.force = true;
+                cli_force = true;
                 break;
             case 'i':
                 cli.init = true;
@@ -103,9 +104,9 @@ int main(int argc, char **argv) {
 
     { // log options
         log("current options:\n");
-        log("  verbose: %s\n", cli.verbose ? "true" : "false");
         log("  initialize: %s\n", cli.init ? "true" : "false");
-        log("  force: %s\n", cli.force ? "true" : "false");
+        log("  force: %s\n", cli_force ? "true" : "false");
+		log("  sync:%s\n", cli.sync ? "true" : "false");
         log("  work directory: \"%s\"\n", cli.dir);
         log("---\n");
     }
