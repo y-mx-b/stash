@@ -1,11 +1,11 @@
-.TH DOTCFG 1
+.TH STASH 1
 
 .SH NAME
-dotcfg \- simple dotfile configuration utility
+stash \- simple dotfile configuration utility
 .SH SYNOPSIS
-\fBdotcfg\fP [COMMAND] [OPTIONS]
+\stash\fP [COMMAND] [OPTIONS]
 .SH DESCRIPTION
-\fBdotcfg\fP stores all your dotfiles in a single place and copies the file
+\stash\fP stores all your dotfiles in a single place and copies the file
 tree within it to place your dotfiles in the right place.
 .SH OPTIONS
 .TP

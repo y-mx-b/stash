@@ -1,17 +1,7 @@
-#ifndef __DOTCFG_CLI_H__
-#define __DOTCFG_CLI_H__
+#ifndef __STASH_CLI_H__
+#define __STASH_CLI_H__
 
-#include <stdbool.h>
-
-struct cli {
-    bool version;
-    bool help;
-	bool init;
-	bool sync;
-	char *dir;
-};
-
-char *cli_help();
-char *cli_version();
+char *cli_get_help();
+char *cli_get_version();
 
 #endif

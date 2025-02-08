@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra
 
 # --- PROJECT FILES ---
 SRC = $(wildcard src/*.c)
-EXEC = dotcfg
+EXEC = stash
 
 # --- DEBUG BUILD ---
 DDIR = .build/debug
@@ -75,13 +75,13 @@ fmt:
 # TODO: make install directories variables
 install: release
 	mkdir -p ~/.local/share/man
-	cp ./doc/dotcfg.man ~/.local/share/man/dotcfg.1
+	cp ./doc/stash.man ~/.local/share/man/stash.1
 	mkdir -p ~/.local/bin
-	cp ./.build/release/dotcfg ~/.local/bin/dotcfg
+	cp ./.build/release/stash ~/.local/bin/stash
 
 uninstall:
-	-rm ~/.local/share/man/dotcfg.1
-	-rm ~/.local/bin/dotcfg
+	-rm ~/.local/share/man/stash.1
+	-rm ~/.local/bin/stash
 
 help:
 	@echo '# Build'
@@ -94,4 +94,4 @@ help:
 	@echo
 	@echo '# Misc'
 	@echo '`make clean`                     -- clean all build artifacts'
-	@echo '`make install`                   -- install `dotcfg`'
+	@echo '`make install`                   -- install `stash`'

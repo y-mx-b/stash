@@ -1,23 +1,10 @@
-# `dotcfg`
+# `stash`
 
 Configure your dotfiles, all from one place!
 
 > [!NOTE]
 >
-> `dotcfg` currently only supports UNIX compatible operating systems.
-
-## Features
-
-- Localization
-- Manage all your dotfiles in a single directory.
-- Easily move your configuration between machines.
-- Easily maintain your configuration across machines.
-- Sync
-- Intelligent use of symlinks to keep existing dotfiles in sync.
-- Easily add new dotfiles and link them.
-- Profiles and Backups
-- Backed by `git` with atomic commits.
-- Create profiles to maintain different configurations for different machines.
+> `stash` currently only supports POSIX compatible operating systems.
 
 ## Installation
 
@@ -30,13 +17,13 @@ Configure your dotfiles, all from one place!
 
 ### Storage Model
 
-`dotcfg` works by storing all your dotfiles physically in one directory and symlinking them to where
+`stash` works by storing all your dotfiles physically in one directory and symlinking them to where
 they need to go.
 
-Here is an example `dotcfg` setup:
+Here is an example `stash` setup:
 
 ```
-.cfg
+.stash
 ├── .zshrc
 ├── .local
 │   └── bin
@@ -53,32 +40,22 @@ Here is an example `dotcfg` setup:
                 └── base.yml
 ```
 
-Instead of symlinking each and every file, `dotcfg` will intelligently symlink directories if it
-can, so the above example configuration would result in the following symlinks:
+Here is the resulting synced home directory:
 
 ```
 ~
-├── .zshrc -> ~/.cfg/.zshrc
+├── .zshrc -> ~/.stash/.zshrc
 ├── .local
 │   └── bin
-│       └── my-script -> ~/.cfg/bin/my-script
+│       └── my-script -> ~/.stash/bin/my-script
 ├── .config
-│   └── nvim -> ~/.cfg/.config/nvim
-│       └── init.lua
+│   └── nvim
+│       └── init.lua -> ~/.stash/.config/nvim/init.lua
 └── Library
     └── Preferences
-        └── espanso -> ~/.cfg/Library/Preferences/espanso
+        └── espanso
             ├── config
-            │   └── default.yml
+            │   └── default.yml -> ~/.stash/Library/Preferences/espanso/config/default.yml
             └── match
-                └── base.yml
-```
-
-Any missing parent directories will be add if necessary.
-
-### Commands
-
-```sh
-dotcfg add
-dotcfg link
+                └── base.yml -> ~/.stash/Library/Preferences/espanso/match/base.yml
 ```
