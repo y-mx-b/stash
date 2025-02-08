@@ -18,12 +18,13 @@ int main(int argc, char **argv) {
         .verbose = false,
         .force   = false,
         .init    = false,
+		.sync = false,
         .dir     = dir_cfg(),
     };
 
     // parse args
     opterr = false;
-	for (int c; (c = getopt(argc, argv, "hvVd:fi")) != -1;) {
+	for (int c; (c = getopt(argc, argv, "hvVd:fis")) != -1;) {
         switch (c) {
             case 'v':
                 cli.version = true;
@@ -40,6 +41,9 @@ int main(int argc, char **argv) {
             case 'i':
                 cli.init = true;
                 break;
+			case 's':
+				cli.sync = true;
+				break;
             case 'd':
                 // consider using realpath here?
                 cli.dir = optarg;
@@ -76,10 +80,11 @@ int main(int argc, char **argv) {
     log(cli.verbose, "  initialize: %s\n", cli.init ? "true" : "false");
     log(cli.verbose, "  force: %s\n", cli.force ? "true" : "false");
     log(cli.verbose, "  work directory: \"%s\"\n", cli.dir);
+	log(cli.verbose, "---\n");
 
     // initialize work directory
-    log(cli.verbose, "*initializing work directory*\n");
     if (cli.init) {
+		log(cli.verbose, "*initializing work directory*\n");
         if (mkdir(cli.dir, 0755) == -1) {
             if (errno == EEXIST) {
                 // check if directory already exists
@@ -94,6 +99,7 @@ int main(int argc, char **argv) {
                 goto FILE_ERROR;
             }
         }
+		log(cli.verbose, "---\n");
     }
 
     // set work directory
@@ -103,6 +109,12 @@ int main(int argc, char **argv) {
         goto FILE_ERROR;
     }
     log(cli.verbose, "current work directory: \"%s\"\n", cli.dir);
+	log(cli.verbose, "---\n");
+
+	// link work directory contents
+	log(cli.verbose, "*sync work directory*\n");
+	log(cli.verbose, "**not yet implemented\n");
+	log(cli.verbose, "---\n");
 
     // execute the rest of the arguments as command + args
     log(cli.verbose, "*passing execution*\n");

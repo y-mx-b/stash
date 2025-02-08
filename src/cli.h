@@ -10,6 +10,7 @@ struct cli {
 	bool verbose;
     bool force;
 	bool init;
+	bool sync;
 	char *dir;
 };
 
