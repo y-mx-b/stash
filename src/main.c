@@ -1,34 +1,53 @@
 #include "cli.h"
+#include "dir.h"
+#include <errno.h>
 #include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <stdlib.h>
 
 int main(int argc, char **argv) {
-    if (argc < 2) {
-        printf("%s", cli_help());
-        return 0;
+
+	struct cli cli = {
+		.version =  false,
+		.help = false,
+		.force = false,
+	};
+
+	opterr = false;
+    int c;
+    while ((c = getopt(argc, argv, "hvf")) != -1) {
+		switch (c) {
+			case 'v':
+				cli.version = true;
+				break;
+			case 'h':
+				cli.help = true;
+				break;
+			case 'f':
+				cli.force = true;
+				break;
+			case '?':
+				fprintf(stderr, "unexpected option `%c` in argument `%s`\n", optopt, argv[optind]);
+				return 1;
+		}
     }
 
-    struct args args = cli_lex_args(argc, argv);
-    for (size_t i = 0; i < args.count; i++) {
-        printf("%d: %s\n", args.args[i].type, args.args[i].value);
+    if (optind < argc) {
+		chdir(dir_cfg());
+		if (execvp(argv[optind], argv+optind) == -1) {
+			fprintf(stderr, "unknown executable: `%s\n", argv[optind]);
+		}
+        return 1;
     }
 
-    switch (cli_parse_cmd(argv[1])) {
-        case CMD_INIT:
-            cmd_init();
-            break;
-
-        case CMD_CLEAR:
-            cmd_clear();
-            break;
-
-        case CMD_UNKNOWN:
-            printf("unknown\n");
-            break;
-
-        case CMD_HELP:
-            printf("%s", cli_help());
-            break;
-    }
+	if (cli.version) {
+		printf("%s", cli_version());
+		return 0;
+	} else if (cli.help) {
+		printf("%s", cli_help());
+		return 0;
+	}
 
     return 0;
 }

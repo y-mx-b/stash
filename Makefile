@@ -37,7 +37,10 @@ $(DDIR)/%.o: src/%.c
 	$(CC) -c $(CFLAGS) $(DCFLAGS) -o $@ -c $<
 
 debug_run: debug
-	./$(DEXEC) $(ARGS)
+	@echo "-----"
+	@echo "Running debug build"
+	@echo "-----"
+	@./$(DEXEC) $(ARGS)
 
 
 # --- RELEASE BUILD ---
@@ -54,7 +57,10 @@ $(RDIR)/%.o: src/%.c
 	$(CC) $(CFLAGS) $(RCFLAGS) -o $@ -c $<
 
 release_run: release
-	./$(REXEC) $(ARGS)
+	@echo "-----"
+	@echo "Running release build"
+	@echo "-----"
+	@./$(REXEC) $(ARGS)
 
 
 # --- MISC ---
