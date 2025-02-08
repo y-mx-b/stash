@@ -3,7 +3,7 @@
 char *cli_get_help() {
     return "Simple dotfile configuration utility.\n"
            "Usage:\n"
-           "	stash [-fiV] [-d WORK_PATH] [<COMMAND> <ARGS...>]\n"
+           "	stash [-fisV] [-d WORK_PATH] [<COMMAND> <ARGS> ...]\n"
            "Options:\n"
            "  -h\tdisplay this help message\n"
            "  -v\tdisplay version number\n"

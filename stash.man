@@ -3,21 +3,47 @@
 .SH NAME
 stash \- simple dotfile configuration utility
 .SH SYNOPSIS
-\stash\fP [COMMAND] [OPTIONS]
+\fBstash\fP [\fB\-h\fP] [\fB\-v\fP] [\fB\-fsiV\fP] [\fB\-d\fP \fBWORK_PATH\fP]
+[\fB<COMMAND>\fP \fB<ARGS>\fP \fB...\fP]
 .SH DESCRIPTION
-\stash\fP stores all your dotfiles in a single place and copies the file
-tree within it to place your dotfiles in the right place.
+\fBstash\fP stores all your dotfiles in a single place and copies the file
+tree within it to place your dotfiles in the right place. It also provides
+the ability to run arbitrary commands within the dotfile directory.
 .SH OPTIONS
 .TP
-\fB\-h\fP, \fB\-\-help\fP
-Show a brief help menu.
+.BR \-h
+Display a brief help message.
 .TP
-.BR \-\-version
-Display version number.
-.SH COMMANDS
+.BR \-v
+Display the version number.
 .TP
-\fBadd\fP
-Add a file.
+.BR \-V
+Enable verbose logging.
 .TP
-\fBsync\fP
-Sync dotfiles.
+.BR \-d " " WORK_PATH
+Provide a work directory. (default: "~/.stash/")
+.TP
+.BR \-f
+Overwrite any existing files.
+.TP
+.BR \-i
+Create the work directory, if it does not exist.
+.TP
+.BR \-s
+Sync files in work directory.
+.SH EXAMPLES
+One of the key features of \fBstash\fP is that it allows you to run arbitrary
+commands within the working directory.
+.PP
+.nf
+.RS
+\fBstash \-i git init\fP
+\fBstash echo "hello world" >my_file.txt\fP
+\fBstash \-i git commit -am "My first file!"\fP
+\fBstash \-s\fP
+.RE
+.fi
+.PP
+This snippet initializes a git repository in "~/.stash", creates a file with
+the contents "hello world", commits it to the repository, and then creates a
+symlink "~/my_file.txt" that points to "~/.stash/my_file.txt".
