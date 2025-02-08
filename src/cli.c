@@ -3,13 +3,17 @@
 char *cli_help() {
     return "Simple dotfile configuration utility.\n"
            "Usage:\n"
-           "	<example usage>\n"
+           "	dotcfg [-fiV] [-d WORK_PATH] [<COMMAND> <ARGS...>]\n"
            "Options:\n"
-           "	<list of options>\n"
-           "Commands:\n"
-           "	<list of commands>\n";
+           "  -h\tdisplay this help message\n"
+           "  -v\tdisplay version number\n"
+           "  -V\tdisplay verbose logging\n"
+           "  -f\toverwrite existing files\n"
+           "  -i\tinitialize work directory\n"
+           "  -d\tprovide a work directory\n"
+           "\t  (default: \"~/.dotcfg\")\n";
 }
 
 char *cli_version() {
-	return "dotcfg 0.1.0\n";
+    return "dotcfg 0.1.0\n";
 }

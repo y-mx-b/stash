@@ -7,7 +7,10 @@ struct cli {
     bool version;
     bool help;
 
+	bool verbose;
     bool force;
+	bool init;
+	char *dir;
 };
 
 char *cli_help();
