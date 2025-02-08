@@ -18,6 +18,7 @@ int link_entry(const char *path, const struct stat *stat, const int typeflag, st
 			log("create symlink: \"%s\" -> \"%s\"\n", new_path, path);
 			if (symlink(path, new_path) != 0) {
 				// TODO: handle errors
+				// TODO: check if files already exist, require force flag to overwrite
 			}
 			break;
 		case FTW_D:
