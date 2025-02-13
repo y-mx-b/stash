@@ -12,7 +12,7 @@ char *cli_get_help() {
            "\t  (default: \"~/.stash\")\n"
            "  -f\toverwrite existing files\n"
            "  -i\tinitialize work directory\n"
-           "  -s\tsync files";
+           "  -s\tsync files\n";
 }
 
 char *cli_get_version() {

@@ -74,13 +74,13 @@ fmt:
 
 # TODO: make install directories variables
 install: release
-	mkdir -p ~/.local/share/man
-	cp ./doc/stash.man ~/.local/share/man/stash.1
+	mkdir -p ~/.local/share/man/man1
+	cp -rf ./stash.man ~/.local/share/man/man1/stash.1
 	mkdir -p ~/.local/bin
-	cp ./.build/release/stash ~/.local/bin/stash
+	cp -rf ./.build/release/stash ~/.local/bin/stash
 
 uninstall:
-	-rm ~/.local/share/man/stash.1
+	-rm ~/.local/share/man/man1/stash.1
 	-rm ~/.local/bin/stash
 
 help:
